@@ -248,7 +248,7 @@ The `MediaInfoUtil` class provides a wrapper to the `MediaInfo.exe` file and ret
 
     Given its importance, we will split this method further and describe each respective part.
 
-        1. This method starts by retrieving the absolute path to the `MediaInfo.exe` file.  The `ProcessBuilder` will fail if this path is not absolute.
+    a. This method starts by retrieving the absolute path to the `MediaInfo.exe` file.  The `ProcessBuilder` will fail if this path is not absolute.
 
         ```java
             final String exePath = MediaInfoUtil.getMediaInfoCliPath();
@@ -259,7 +259,7 @@ The `MediaInfoUtil` class provides a wrapper to the `MediaInfo.exe` file and ret
 
         The error stream, where errors are printed, is redirected to the output stream so we only have to deal with one stream.  This is quite important as otherwise we can experience something similar to a deadlock (in theory this is not a deadlock but has the same effect).  If enough errors are produced, the error buffer will get full and will stop the application from writing more errors.  The application will not be able to proceed until the error buffer is emptied, thus waits forever.  Using this approach the errors are written to the output stream and thus the error stream will never get full.  Furthermore, as we will see next we will read all output produced to the standard stream and this will never get full.
 
-        1. Once the process is started, we need to start reading the output produced by the process, otherwise the process may block until the produced stream is consumed.  We can do this by using the `process.getInputStream()`, which returns the standard output stream produced by the same process.
+     a. Once the process is started, we need to start reading the output produced by the process, otherwise the process may block until the produced stream is consumed.  We can do this by using the `process.getInputStream()`, which returns the standard output stream produced by the same process.
 
         ```java
             final StringBuilder buffer = new StringBuilder();
@@ -272,7 +272,7 @@ The `MediaInfoUtil` class provides a wrapper to the `MediaInfo.exe` file and ret
 
         Please note that error stream is redirected to the standard stream.  Therefore the above code fragment will capture both streams.  Furthermore, the above loop will keep iterating until the process has finished.  The method `Reader.read()` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/io/Reader.html#read())) will block until either there are more characters to be read or the stream is closed, in which case `-1` is returned.
 
-        1. Finally we will wait for the process to finish and retrieve the process exit code.
+     a. Finally we will wait for the process to finish and retrieve the process exit code.
 
         ```java
             final int status = process.waitFor();
