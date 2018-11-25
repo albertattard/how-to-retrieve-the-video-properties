@@ -10,7 +10,7 @@ This article starts from the configuration process, where it describes from wher
 
 ## Configuration
 
-As mentioned already, the examples shown in this article make use of a third party native library named MediaInfo, which library can be downloaded from: (http://mediaarea.net/en/MediaInfo/Download)[http://mediaarea.net/en/MediaInfo/Download].   As shown in the following image, the MediaInfo comes in several flavours.  For the purpose of this article, we only need the Command Line Interface version.
+As mentioned already, the examples shown in this article make use of a third party native library named MediaInfo, which library can be downloaded from: [http://mediaarea.net/en/MediaInfo/Download](http://mediaarea.net/en/MediaInfo/Download).   As shown in the following image, the MediaInfo comes in several flavours.  For the purpose of this article, we only need the Command Line Interface version.
 
 ![Download the CLI Version](img/Download-the-CLI-Version.png)
 
@@ -326,6 +326,7 @@ public class NameValue {
   }
 
   /* Other methods removed for brevity */
+}
 ```
 
 The line information comprise name and value and is delimited by a colon (`:`). The line information is formatted using a fixed width, therefore we can use this information to split the line into a name and a value.  Instead the `NameValue` class uses the string `" : "` (space colon space) as a delimiter to be more flexible as shown next.
